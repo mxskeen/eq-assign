@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "xray-debug"
+version = "1.0.0"
+description = "X-Ray library and dashboard for debugging multi-step algorithmic systems"
+authors = ["Developer"]
+readme = "README.md"
+packages = [
+    { include = "xray" },
+    { include = "demo" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.0"
+
+[tool.poetry.scripts]
+xray-demo = "demo.run_demo:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
