@@ -64,3 +64,19 @@ Classes and their purposes:
 `Step` One stage with input/output/reasoning 
 `Evaluation` Per-candidate filter results 
 `FilterResult` Pass/fail with detailed reason
+
+## Known Limitations
+
+- Single trace file view (no trace history/comparison)
+- Dashboard requires manual refresh after new runs
+- No real-time streaming (traces loaded after completion)
+- No search/filter within candidate evaluations
+
+## Future Improvements
+
+- Trace comparison to diff two pipeline runs
+- Real-time trace streaming during execution
+- Search and filter evaluations by status/filter name
+- Export traces to PDF/CSV for reporting
+- Support for nested/hierarchical steps
+- Trace history with timeline navigation

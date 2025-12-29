@@ -1,0 +1,2452 @@
+{
+  "trace_id": "c35eddef-6111-4346-a8ee-13880325b092",
+  "name": "competitor_selection",
+  "started_at": "2025-12-29T01:13:28.368089",
+  "completed_at": null,
+  "metadata": {
+    "reference_asin": "B0XYZ123",
+    "reference_title": "Milton Thermosteel 1000ml Insulated"
+  },
+  "steps": [
+    {
+      "name": "keyword_generation",
+      "step_type": "llm",
+      "input_data": {
+        "product_title": "Milton Thermosteel 1000ml Insulated",
+        "category": "Home & Kitchen > Water Bottles",
+        "model": "gpt-4"
+      },
+      "output_data": {
+        "keywords": [
+          "stainless steel water bottle 1 litre",
+          "vacuum insulated flask 1000ml",
+          "thermosteel bottle hot cold",
+          "steel sipper bottle office gym"
+        ],
+        "keyword_count": 4
+      },
+      "reasoning": "Analyzed product title to extract key attributes: material (stainless steel), capacity (1000ml), feature (insulated). Generated keyword variations combining these attributes with common search patterns.",
+      "evaluations": [],
+      "status": "completed",
+      "started_at": "2025-12-29T01:13:28.368150",
+      "completed_at": "2025-12-29T01:13:28.368172",
+      "error": null,
+      "metadata": {}
+    },
+    {
+      "name": "candidate_search",
+      "step_type": "api",
+      "input_data": {
+        "keywords": [
+          "stainless steel water bottle 1 litre",
+          "vacuum insulated flask 1000ml",
+          "thermosteel bottle hot cold",
+          "steel sipper bottle office gym"
+        ],
+        "primary_keyword": "stainless steel water bottle 1 litre",
+        "limit": 50
+      },
+      "output_data": {
+        "total_results_available": 2847,
+        "candidates_fetched": 50,
+        "sample_candidates": [
+          {
+            "asin": "B0COMP001",
+            "title": "Cello Puro Steel-X 900ml",
+            "price": 749,
+            "rating": 4.5,
+            "reviews": 8932
+          },
+          {
+            "asin": "B0COMP002",
+            "title": "Borosil Hydra Trek 700ml",
+            "price": 599,
+            "rating": 4.4,
+            "reviews": 5621
+          },
+          {
+            "asin": "B0COMP003",
+            "title": "Milton Atlantis 1100ml Thermosteel",
+            "price": 1099,
+            "rating": 4.3,
+            "reviews": 4102
+          },
+          {
+            "asin": "B0COMP004",
+            "title": "Prestige PINNACLE 1000ml",
+            "price": 649,
+            "rating": 4.1,
+            "reviews": 3254
+          },
+          {
+            "asin": "B0COMP005",
+            "title": "Solimo Stainless Steel 1000ml",
+            "price": 499,
+            "rating": 4.2,
+            "reviews": 2876
+          }
+        ]
+      },
+      "reasoning": "Searched using primary keyword 'stainless steel water bottle 1 litre'. Found 2,847 total matches in the catalog. Retrieved top 50 results ranked by relevance score. Results include a mix of branded and generic products.",
+      "evaluations": [],
+      "status": "completed",
+      "started_at": "2025-12-29T01:13:28.368208",
+      "completed_at": "2025-12-29T01:13:28.368259",
+      "error": null,
+      "metadata": {}
+    },
+    {
+      "name": "apply_filters_and_rank",
+      "step_type": "filter",
+      "input_data": {
+        "candidates_count": 50,
+        "reference_product": {
+          "asin": "B0XYZ123",
+          "title": "Milton Thermosteel 1000ml Insulated",
+          "price": 899,
+          "rating": 4.2,
+          "reviews": 1247
+        },
+        "filter_config": {
+          "price_range": {
+            "min": 449.5,
+            "max": 1798.0,
+            "rule": "0.5x - 2.0x of reference price"
+          },
+          "min_rating": {
+            "value": 3.8,
+            "rule": "Must be at least 3.8 stars"
+          },
+          "min_reviews": {
+            "value": 100,
+            "rule": "Must have at least 100 reviews"
+          }
+        }
+      },
+      "output_data": {
+        "total_evaluated": 50,
+        "passed": 19,
+        "failed": 31,
+        "selected_competitor": {
+          "asin": "B0COMP001",
+          "title": "Cello Puro Steel-X 900ml",
+          "price": 749,
+          "rating": 4.5,
+          "reviews": 8932,
+          "score": 0.799
+        },
+        "top_3_candidates": [
+          {
+            "rank": 1,
+            "asin": "B0COMP001",
+            "title": "Cello Puro Steel-X 900ml",
+            "score": 0.799
+          },
+          {
+            "rank": 2,
+            "asin": "B0COMP002",
+            "title": "Borosil Hydra Trek 700ml",
+            "score": 0.601
+          },
+          {
+            "rank": 3,
+            "asin": "B0COMP003",
+            "title": "Milton Atlantis 1100ml Thermosteel",
+            "score": 0.545
+          }
+        ]
+      },
+      "reasoning": "Applied 4 filters to 50 candidates. 19 passed all filters, 31 were eliminated. Selected 'Cello Puro Steel-X 900ml' as the best competitor based on composite score (reviews: 8932, rating: 4.5, price proximity to reference).",
+      "evaluations": [
+        {
+          "candidate_id": "B0COMP001",
+          "candidate_data": {
+            "asin": "B0COMP001",
+            "title": "Cello Puro Steel-X 900ml",
+            "price": 749,
+            "rating": 4.5,
+            "reviews": 8932,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": true,
+              "detail": "INR 749 is within INR 450 - INR 1798 range",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 749"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.5 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.5"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "8932 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "8932"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": true,
+          "metadata": {
+            "score": 0.799,
+            "score_breakdown": {
+              "review_score": 0.893,
+              "rating_score": 0.667,
+              "price_proximity": 0.833
+            }
+          }
+        },
+        {
+          "candidate_id": "B0COMP002",
+          "candidate_data": {
+            "asin": "B0COMP002",
+            "title": "Borosil Hydra Trek 700ml",
+            "price": 599,
+            "rating": 4.4,
+            "reviews": 5621,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": true,
+              "detail": "INR 599 is within INR 450 - INR 1798 range",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 599"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.4 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.4"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "5621 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "5621"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": true,
+          "metadata": {
+            "score": 0.601,
+            "score_breakdown": {
+              "review_score": 0.562,
+              "rating_score": 0.6,
+              "price_proximity": 0.666
+            }
+          }
+        },
+        {
+          "candidate_id": "B0COMP003",
+          "candidate_data": {
+            "asin": "B0COMP003",
+            "title": "Milton Atlantis 1100ml Thermosteel",
+            "price": 1099,
+            "rating": 4.3,
+            "reviews": 4102,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": true,
+              "detail": "INR 1099 is within INR 450 - INR 1798 range",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 1099"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.3 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.3"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "4102 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "4102"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": true,
+          "metadata": {
+            "score": 0.545,
+            "score_breakdown": {
+              "review_score": 0.41,
+              "rating_score": 0.533,
+              "price_proximity": 0.778
+            }
+          }
+        },
+        {
+          "candidate_id": "B0COMP004",
+          "candidate_data": {
+            "asin": "B0COMP004",
+            "title": "Prestige PINNACLE 1000ml",
+            "price": 649,
+            "rating": 4.1,
+            "reviews": 3254,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": true,
+              "detail": "INR 649 is within INR 450 - INR 1798 range",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 649"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.1 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.1"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "3254 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "3254"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": true,
+          "metadata": {
+            "score": 0.451,
+            "score_breakdown": {
+              "review_score": 0.325,
+              "rating_score": 0.4,
+              "price_proximity": 0.722
+            }
+          }
+        },
+        {
+          "candidate_id": "B0COMP005",
+          "candidate_data": {
+            "asin": "B0COMP005",
+            "title": "Solimo Stainless Steel 1000ml",
+            "price": 499,
+            "rating": 4.2,
+            "reviews": 2876,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": true,
+              "detail": "INR 499 is within INR 450 - INR 1798 range",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 499"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.2 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.2"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "2876 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "2876"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": true,
+          "metadata": {
+            "score": 0.417,
+            "score_breakdown": {
+              "review_score": 0.288,
+              "rating_score": 0.467,
+              "price_proximity": 0.555
+            }
+          }
+        },
+        {
+          "candidate_id": "B0COMP006",
+          "candidate_data": {
+            "asin": "B0COMP006",
+            "title": "Signoraware Aqua Steel 750ml",
+            "price": 399,
+            "rating": 4.3,
+            "reviews": 2541,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": false,
+              "detail": "INR 399 is below minimum INR 450",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 399"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.3 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.3"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "2541 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "2541"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": false,
+          "metadata": {}
+        },
+        {
+          "candidate_id": "B0COMP007",
+          "candidate_data": {
+            "asin": "B0COMP007",
+            "title": "Kuber Industries Steel Bottle 1L",
+            "price": 549,
+            "rating": 4.4,
+            "reviews": 1987,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": true,
+              "detail": "INR 549 is within INR 450 - INR 1798 range",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 549"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.4 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.4"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "1987 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "1987"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": true,
+          "metadata": {
+            "score": 0.442,
+            "score_breakdown": {
+              "review_score": 0.199,
+              "rating_score": 0.6,
+              "price_proximity": 0.611
+            }
+          }
+        },
+        {
+          "candidate_id": "B0COMP008",
+          "candidate_data": {
+            "asin": "B0COMP008",
+            "title": "Flair Houseware Steelo 1000ml",
+            "price": 449,
+            "rating": 4.2,
+            "reviews": 1654,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": false,
+              "detail": "INR 449 is below minimum INR 450",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 449"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.2 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.2"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "1654 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "1654"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": false,
+          "metadata": {}
+        },
+        {
+          "candidate_id": "B0COMP009",
+          "candidate_data": {
+            "asin": "B0COMP009",
+            "title": "Nirlon Steel Bottle 800ml",
+            "price": 349,
+            "rating": 4.5,
+            "reviews": 1543,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": false,
+              "detail": "INR 349 is below minimum INR 450",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 349"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.5 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.5"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "1543 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "1543"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": false,
+          "metadata": {}
+        },
+        {
+          "candidate_id": "B0COMP010",
+          "candidate_data": {
+            "asin": "B0COMP010",
+            "title": "Pigeon Sapphire 1000ml",
+            "price": 599,
+            "rating": 4.3,
+            "reviews": 1321,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": true,
+              "detail": "INR 599 is within INR 450 - INR 1798 range",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 599"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.3 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.3"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "1321 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "1321"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": true,
+          "metadata": {
+            "score": 0.406,
+            "score_breakdown": {
+              "review_score": 0.132,
+              "rating_score": 0.533,
+              "price_proximity": 0.666
+            }
+          }
+        },
+        {
+          "candidate_id": "B0COMP011",
+          "candidate_data": {
+            "asin": "B0COMP011",
+            "title": "Local Steel Bottle",
+            "price": 149,
+            "rating": 3.2,
+            "reviews": 45,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": false,
+              "detail": "INR 149 is below minimum INR 450",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 149"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": false,
+              "detail": "Rating 3.2 is below 3.8 threshold",
+              "expected": ">= 3.8",
+              "actual": "3.2"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": false,
+              "detail": "45 reviews is below 100 minimum",
+              "expected": ">= 100",
+              "actual": "45"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": false,
+          "metadata": {}
+        },
+        {
+          "candidate_id": "B0COMP012",
+          "candidate_data": {
+            "asin": "B0COMP012",
+            "title": "Roadside Plastic Bottle",
+            "price": 49,
+            "rating": 2.8,
+            "reviews": 23,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": false,
+              "detail": "INR 49 is below minimum INR 450",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 49"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": false,
+              "detail": "Rating 2.8 is below 3.8 threshold",
+              "expected": ">= 3.8",
+              "actual": "2.8"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": false,
+              "detail": "23 reviews is below 100 minimum",
+              "expected": ">= 100",
+              "actual": "23"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": false,
+          "metadata": {}
+        },
+        {
+          "candidate_id": "B0COMP013",
+          "candidate_data": {
+            "asin": "B0COMP013",
+            "title": "Premium Copper Bottle 1L",
+            "price": 2499,
+            "rating": 4.8,
+            "reviews": 234,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": false,
+              "detail": "INR 2499 exceeds maximum INR 1798",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 2499"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.8 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.8"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "234 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "234"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": false,
+          "metadata": {}
+        },
+        {
+          "candidate_id": "B0COMP014",
+          "candidate_data": {
+            "asin": "B0COMP014",
+            "title": "Designer Silver Bottle",
+            "price": 4999,
+            "rating": 4.9,
+            "reviews": 87,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": false,
+              "detail": "INR 4999 exceeds maximum INR 1798",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 4999"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.9 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.9"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": false,
+              "detail": "87 reviews is below 100 minimum",
+              "expected": ">= 100",
+              "actual": "87"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": false,
+          "metadata": {}
+        },
+        {
+          "candidate_id": "B0COMP015",
+          "candidate_data": {
+            "asin": "B0COMP015",
+            "title": "Cheap Plastic Set of 6",
+            "price": 99,
+            "rating": 2.1,
+            "reviews": 12,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": false,
+              "detail": "INR 99 is below minimum INR 450",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 99"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": false,
+              "detail": "Rating 2.1 is below 3.8 threshold",
+              "expected": ">= 3.8",
+              "actual": "2.1"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": false,
+              "detail": "12 reviews is below 100 minimum",
+              "expected": ">= 100",
+              "actual": "12"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": false,
+          "metadata": {}
+        },
+        {
+          "candidate_id": "B0COMP016",
+          "candidate_data": {
+            "asin": "B0COMP016",
+            "title": "Milton Lid Replacement",
+            "price": 149,
+            "rating": 4.6,
+            "reviews": 3421,
+            "category": "Home & Kitchen > Bottle Accessories"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": false,
+              "detail": "INR 149 is below minimum INR 450",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 149"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.6 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.6"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "3421 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "3421"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": false,
+              "detail": "Product is an accessory, not a water bottle",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Bottle Accessories"
+            }
+          ],
+          "qualified": false,
+          "metadata": {}
+        },
+        {
+          "candidate_id": "B0COMP017",
+          "candidate_data": {
+            "asin": "B0COMP017",
+            "title": "Bottle Carry Bag Sling",
+            "price": 199,
+            "rating": 4.4,
+            "reviews": 2156,
+            "category": "Home & Kitchen > Bottle Accessories"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": false,
+              "detail": "INR 199 is below minimum INR 450",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 199"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.4 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.4"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "2156 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "2156"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": false,
+              "detail": "Product is an accessory, not a water bottle",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Bottle Accessories"
+            }
+          ],
+          "qualified": false,
+          "metadata": {}
+        },
+        {
+          "candidate_id": "B0COMP018",
+          "candidate_data": {
+            "asin": "B0COMP018",
+            "title": "Bottle Cleaning Brush Set",
+            "price": 129,
+            "rating": 4.5,
+            "reviews": 4532,
+            "category": "Home & Kitchen > Cleaning Supplies"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": false,
+              "detail": "INR 129 is below minimum INR 450",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 129"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.5 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.5"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "4532 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "4532"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": false,
+              "detail": "Product is an accessory, not a water bottle",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Cleaning Supplies"
+            }
+          ],
+          "qualified": false,
+          "metadata": {}
+        },
+        {
+          "candidate_id": "B0COMP019",
+          "candidate_data": {
+            "asin": "B0COMP019",
+            "title": "Insulated Bottle Cover Sleeve",
+            "price": 179,
+            "rating": 4.2,
+            "reviews": 1876,
+            "category": "Home & Kitchen > Bottle Accessories"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": false,
+              "detail": "INR 179 is below minimum INR 450",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 179"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.2 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.2"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "1876 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "1876"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": false,
+              "detail": "Product is an accessory, not a water bottle",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Bottle Accessories"
+            }
+          ],
+          "qualified": false,
+          "metadata": {}
+        },
+        {
+          "candidate_id": "B0COMP020",
+          "candidate_data": {
+            "asin": "B0COMP020",
+            "title": "Sipper Cap Replacement",
+            "price": 99,
+            "rating": 4.0,
+            "reviews": 987,
+            "category": "Home & Kitchen > Bottle Accessories"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": false,
+              "detail": "INR 99 is below minimum INR 450",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 99"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.0 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.0"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "987 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "987"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": false,
+              "detail": "Product is an accessory, not a water bottle",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Bottle Accessories"
+            }
+          ],
+          "qualified": false,
+          "metadata": {}
+        },
+        {
+          "candidate_id": "B0COMP021",
+          "candidate_data": {
+            "asin": "B0COMP021",
+            "title": "Wonderchef Sippy 1000ml",
+            "price": 799,
+            "rating": 4.3,
+            "reviews": 1432,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": true,
+              "detail": "INR 799 is within INR 450 - INR 1798 range",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 799"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.3 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.3"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "1432 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "1432"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": true,
+          "metadata": {
+            "score": 0.466,
+            "score_breakdown": {
+              "review_score": 0.143,
+              "rating_score": 0.533,
+              "price_proximity": 0.889
+            }
+          }
+        },
+        {
+          "candidate_id": "B0COMP022",
+          "candidate_data": {
+            "asin": "B0COMP022",
+            "title": "Amazon Basics Steel 1L",
+            "price": 399,
+            "rating": 4.4,
+            "reviews": 1287,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": false,
+              "detail": "INR 399 is below minimum INR 450",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 399"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.4 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.4"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "1287 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "1287"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": false,
+          "metadata": {}
+        },
+        {
+          "candidate_id": "B0COMP023",
+          "candidate_data": {
+            "asin": "B0COMP023",
+            "title": "Tupperware Aquasafe 1000ml",
+            "price": 649,
+            "rating": 4.3,
+            "reviews": 1156,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": true,
+              "detail": "INR 649 is within INR 450 - INR 1798 range",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 649"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.3 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.3"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "1156 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "1156"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": true,
+          "metadata": {
+            "score": 0.413,
+            "score_breakdown": {
+              "review_score": 0.116,
+              "rating_score": 0.533,
+              "price_proximity": 0.722
+            }
+          }
+        },
+        {
+          "candidate_id": "B0COMP024",
+          "candidate_data": {
+            "asin": "B0COMP024",
+            "title": "Kent Stainless Steel 1L",
+            "price": 899,
+            "rating": 4.0,
+            "reviews": 987,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": true,
+              "detail": "INR 899 is within INR 450 - INR 1798 range",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 899"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.0 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.0"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "987 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "987"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": true,
+          "metadata": {
+            "score": 0.406,
+            "score_breakdown": {
+              "review_score": 0.099,
+              "rating_score": 0.333,
+              "price_proximity": 1.0
+            }
+          }
+        },
+        {
+          "candidate_id": "B0COMP025",
+          "candidate_data": {
+            "asin": "B0COMP025",
+            "title": "Trueware Fusion 800ml",
+            "price": 549,
+            "rating": 4.5,
+            "reviews": 876,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": true,
+              "detail": "INR 549 is within INR 450 - INR 1798 range",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 549"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.5 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.5"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "876 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "876"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": true,
+          "metadata": {
+            "score": 0.421,
+            "score_breakdown": {
+              "review_score": 0.088,
+              "rating_score": 0.667,
+              "price_proximity": 0.611
+            }
+          }
+        },
+        {
+          "candidate_id": "B0COMP026",
+          "candidate_data": {
+            "asin": "B0COMP026",
+            "title": "Homeglory Steel Bottle 1L",
+            "price": 349,
+            "rating": 4.2,
+            "reviews": 765,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": false,
+              "detail": "INR 349 is below minimum INR 450",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 349"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.2 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.2"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "765 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "765"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": false,
+          "metadata": {}
+        },
+        {
+          "candidate_id": "B0COMP027",
+          "candidate_data": {
+            "asin": "B0COMP027",
+            "title": "Gym Gallon Bottle 2L",
+            "price": 449,
+            "rating": 4.4,
+            "reviews": 654,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": false,
+              "detail": "INR 449 is below minimum INR 450",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 449"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.4 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.4"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "654 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "654"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": false,
+          "metadata": {}
+        },
+        {
+          "candidate_id": "B0COMP028",
+          "candidate_data": {
+            "asin": "B0COMP028",
+            "title": "Quench Insulated 750ml",
+            "price": 699,
+            "rating": 4.6,
+            "reviews": 543,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": true,
+              "detail": "INR 699 is within INR 450 - INR 1798 range",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 699"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.6 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.6"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "543 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "543"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": true,
+          "metadata": {
+            "score": 0.473,
+            "score_breakdown": {
+              "review_score": 0.054,
+              "rating_score": 0.733,
+              "price_proximity": 0.778
+            }
+          }
+        },
+        {
+          "candidate_id": "B0COMP029",
+          "candidate_data": {
+            "asin": "B0COMP029",
+            "title": "Carafe Thermosteel 1L",
+            "price": 849,
+            "rating": 4.3,
+            "reviews": 432,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": true,
+              "detail": "INR 849 is within INR 450 - INR 1798 range",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 849"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.3 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.3"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "432 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "432"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": true,
+          "metadata": {
+            "score": 0.44,
+            "score_breakdown": {
+              "review_score": 0.043,
+              "rating_score": 0.533,
+              "price_proximity": 0.944
+            }
+          }
+        },
+        {
+          "candidate_id": "B0COMP030",
+          "candidate_data": {
+            "asin": "B0COMP030",
+            "title": "Eco Vessel Steel 900ml",
+            "price": 999,
+            "rating": 4.1,
+            "reviews": 321,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": true,
+              "detail": "INR 999 is within INR 450 - INR 1798 range",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 999"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.1 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.1"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "321 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "321"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": true,
+          "metadata": {
+            "score": 0.375,
+            "score_breakdown": {
+              "review_score": 0.032,
+              "rating_score": 0.4,
+              "price_proximity": 0.889
+            }
+          }
+        },
+        {
+          "candidate_id": "B0COMP031",
+          "candidate_data": {
+            "asin": "B0COMP031",
+            "title": "Fitness Pro Bottle 1L",
+            "price": 450,
+            "rating": 3.8,
+            "reviews": 100,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": true,
+              "detail": "INR 450 is within INR 450 - INR 1798 range",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 450"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 3.8 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "3.8"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "100 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "100"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": true,
+          "metadata": {
+            "score": 0.199,
+            "score_breakdown": {
+              "review_score": 0.01,
+              "rating_score": 0.2,
+              "price_proximity": 0.501
+            }
+          }
+        },
+        {
+          "candidate_id": "B0COMP032",
+          "candidate_data": {
+            "asin": "B0COMP032",
+            "title": "Sports Water Sipper",
+            "price": 449,
+            "rating": 3.9,
+            "reviews": 110,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": false,
+              "detail": "INR 449 is below minimum INR 450",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 449"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 3.9 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "3.9"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "110 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "110"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": false,
+          "metadata": {}
+        },
+        {
+          "candidate_id": "B0COMP033",
+          "candidate_data": {
+            "asin": "B0COMP033",
+            "title": "Premium Hydration Flask",
+            "price": 1799,
+            "rating": 4.0,
+            "reviews": 150,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": false,
+              "detail": "INR 1799 exceeds maximum INR 1798",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 1799"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.0 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.0"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "150 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "150"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": false,
+          "metadata": {}
+        },
+        {
+          "candidate_id": "B0COMP034",
+          "candidate_data": {
+            "asin": "B0COMP034",
+            "title": "Workout Jug 1.5L",
+            "price": 1899,
+            "rating": 4.1,
+            "reviews": 200,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": false,
+              "detail": "INR 1899 exceeds maximum INR 1798",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 1899"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.1 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.1"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "200 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "200"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": false,
+          "metadata": {}
+        },
+        {
+          "candidate_id": "B0COMP035",
+          "candidate_data": {
+            "asin": "B0COMP035",
+            "title": "Basic Gym Bottle",
+            "price": 299,
+            "rating": 3.7,
+            "reviews": 95,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": false,
+              "detail": "INR 299 is below minimum INR 450",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 299"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": false,
+              "detail": "Rating 3.7 is below 3.8 threshold",
+              "expected": ">= 3.8",
+              "actual": "3.7"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": false,
+              "detail": "95 reviews is below 100 minimum",
+              "expected": ">= 100",
+              "actual": "95"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": false,
+          "metadata": {}
+        },
+        {
+          "candidate_id": "B0COMP036",
+          "candidate_data": {
+            "asin": "B0COMP036",
+            "title": "New Launch Artisan Bottle",
+            "price": 1199,
+            "rating": 4.8,
+            "reviews": 23,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": true,
+              "detail": "INR 1199 is within INR 450 - INR 1798 range",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 1199"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.8 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.8"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": false,
+              "detail": "23 reviews is below 100 minimum",
+              "expected": ">= 100",
+              "actual": "23"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": false,
+          "metadata": {}
+        },
+        {
+          "candidate_id": "B0COMP037",
+          "candidate_data": {
+            "asin": "B0COMP037",
+            "title": "Startup Brand Steel",
+            "price": 749,
+            "rating": 4.5,
+            "reviews": 45,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": true,
+              "detail": "INR 749 is within INR 450 - INR 1798 range",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 749"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.5 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.5"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": false,
+              "detail": "45 reviews is below 100 minimum",
+              "expected": ">= 100",
+              "actual": "45"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": false,
+          "metadata": {}
+        },
+        {
+          "candidate_id": "B0COMP038",
+          "candidate_data": {
+            "asin": "B0COMP038",
+            "title": "Indie Craft Bottle",
+            "price": 599,
+            "rating": 4.3,
+            "reviews": 67,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": true,
+              "detail": "INR 599 is within INR 450 - INR 1798 range",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 599"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.3 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.3"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": false,
+              "detail": "67 reviews is below 100 minimum",
+              "expected": ">= 100",
+              "actual": "67"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": false,
+          "metadata": {}
+        },
+        {
+          "candidate_id": "B0COMP039",
+          "candidate_data": {
+            "asin": "B0COMP039",
+            "title": "Handmade Copper Flask",
+            "price": 1499,
+            "rating": 4.7,
+            "reviews": 89,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": true,
+              "detail": "INR 1499 is within INR 450 - INR 1798 range",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 1499"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.7 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.7"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": false,
+              "detail": "89 reviews is below 100 minimum",
+              "expected": ">= 100",
+              "actual": "89"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": false,
+          "metadata": {}
+        },
+        {
+          "candidate_id": "B0COMP040",
+          "candidate_data": {
+            "asin": "B0COMP040",
+            "title": "Boutique Steel Flask",
+            "price": 1299,
+            "rating": 4.4,
+            "reviews": 99,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": true,
+              "detail": "INR 1299 is within INR 450 - INR 1798 range",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 1299"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.4 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.4"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": false,
+              "detail": "99 reviews is below 100 minimum",
+              "expected": ">= 100",
+              "actual": "99"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": false,
+          "metadata": {}
+        },
+        {
+          "candidate_id": "B0COMP041",
+          "candidate_data": {
+            "asin": "B0COMP041",
+            "title": "Bottle Handle Grip",
+            "price": 79,
+            "rating": 4.1,
+            "reviews": 1234,
+            "category": "Home & Kitchen > Bottle Accessories"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": false,
+              "detail": "INR 79 is below minimum INR 450",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 79"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.1 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.1"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "1234 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "1234"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": false,
+              "detail": "Product is an accessory, not a water bottle",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Bottle Accessories"
+            }
+          ],
+          "qualified": false,
+          "metadata": {}
+        },
+        {
+          "candidate_id": "B0COMP042",
+          "candidate_data": {
+            "asin": "B0COMP042",
+            "title": "Silicone Base Protector",
+            "price": 129,
+            "rating": 4.3,
+            "reviews": 2345,
+            "category": "Home & Kitchen > Bottle Accessories"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": false,
+              "detail": "INR 129 is below minimum INR 450",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 129"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.3 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.3"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "2345 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "2345"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": false,
+              "detail": "Product is an accessory, not a water bottle",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Bottle Accessories"
+            }
+          ],
+          "qualified": false,
+          "metadata": {}
+        },
+        {
+          "candidate_id": "B0COMP043",
+          "candidate_data": {
+            "asin": "B0COMP043",
+            "title": "Bottle Drying Stand",
+            "price": 249,
+            "rating": 4.2,
+            "reviews": 876,
+            "category": "Home & Kitchen > Kitchen Storage"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": false,
+              "detail": "INR 249 is below minimum INR 450",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 249"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.2 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.2"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "876 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "876"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": false,
+              "detail": "Product is an accessory, not a water bottle",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Kitchen Storage"
+            }
+          ],
+          "qualified": false,
+          "metadata": {}
+        },
+        {
+          "candidate_id": "B0COMP044",
+          "candidate_data": {
+            "asin": "B0COMP044",
+            "title": "Bottle Holder Strap",
+            "price": 149,
+            "rating": 4.0,
+            "reviews": 543,
+            "category": "Sports & Outdoors > Camping"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": false,
+              "detail": "INR 149 is below minimum INR 450",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 149"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.0 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.0"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "543 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "543"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": false,
+              "detail": "Product is an accessory, not a water bottle",
+              "expected": "Water Bottles category",
+              "actual": "Sports & Outdoors > Camping"
+            }
+          ],
+          "qualified": false,
+          "metadata": {}
+        },
+        {
+          "candidate_id": "B0COMP045",
+          "candidate_data": {
+            "asin": "B0COMP045",
+            "title": "Filter Cap Attachment",
+            "price": 199,
+            "rating": 4.4,
+            "reviews": 432,
+            "category": "Home & Kitchen > Bottle Accessories"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": false,
+              "detail": "INR 199 is below minimum INR 450",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 199"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.4 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.4"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "432 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "432"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": false,
+              "detail": "Product is an accessory, not a water bottle",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Bottle Accessories"
+            }
+          ],
+          "qualified": false,
+          "metadata": {}
+        },
+        {
+          "candidate_id": "B0COMP046",
+          "candidate_data": {
+            "asin": "B0COMP046",
+            "title": "Zojirushi Cool 600ml",
+            "price": 1299,
+            "rating": 4.6,
+            "reviews": 2341,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": true,
+              "detail": "INR 1299 is within INR 450 - INR 1798 range",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 1299"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.6 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.6"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "2341 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "2341"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": true,
+          "metadata": {
+            "score": 0.489,
+            "score_breakdown": {
+              "review_score": 0.234,
+              "rating_score": 0.733,
+              "price_proximity": 0.555
+            }
+          }
+        },
+        {
+          "candidate_id": "B0COMP047",
+          "candidate_data": {
+            "asin": "B0COMP047",
+            "title": "Tiger Steel Flask 1L",
+            "price": 1599,
+            "rating": 4.4,
+            "reviews": 1876,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": true,
+              "detail": "INR 1599 is within INR 450 - INR 1798 range",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 1599"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.4 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.4"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "1876 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "1876"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": true,
+          "metadata": {
+            "score": 0.34,
+            "score_breakdown": {
+              "review_score": 0.188,
+              "rating_score": 0.6,
+              "price_proximity": 0.221
+            }
+          }
+        },
+        {
+          "candidate_id": "B0COMP048",
+          "candidate_data": {
+            "asin": "B0COMP048",
+            "title": "Thermos King 700ml",
+            "price": 1799,
+            "rating": 4.3,
+            "reviews": 1654,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": false,
+              "detail": "INR 1799 exceeds maximum INR 1798",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 1799"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.3 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.3"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "1654 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "1654"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": false,
+          "metadata": {}
+        },
+        {
+          "candidate_id": "B0COMP049",
+          "candidate_data": {
+            "asin": "B0COMP049",
+            "title": "Stanley Classic 1L",
+            "price": 1499,
+            "rating": 4.4,
+            "reviews": 1432,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": true,
+              "detail": "INR 1499 is within INR 450 - INR 1798 range",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 1499"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.4 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.4"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "1432 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "1432"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": true,
+          "metadata": {
+            "score": 0.35,
+            "score_breakdown": {
+              "review_score": 0.143,
+              "rating_score": 0.6,
+              "price_proximity": 0.333
+            }
+          }
+        },
+        {
+          "candidate_id": "B0COMP050",
+          "candidate_data": {
+            "asin": "B0COMP050",
+            "title": "Vacuum Flask Pro 1L",
+            "price": 699,
+            "rating": 4.2,
+            "reviews": 1123,
+            "category": "Home & Kitchen > Water Bottles"
+          },
+          "filter_results": [
+            {
+              "filter_name": "price_range",
+              "passed": true,
+              "detail": "INR 699 is within INR 450 - INR 1798 range",
+              "expected": "INR 450 - INR 1798",
+              "actual": "INR 699"
+            },
+            {
+              "filter_name": "min_rating",
+              "passed": true,
+              "detail": "Rating 4.2 meets 3.8 minimum",
+              "expected": ">= 3.8",
+              "actual": "4.2"
+            },
+            {
+              "filter_name": "min_reviews",
+              "passed": true,
+              "detail": "1123 reviews meets 100 minimum",
+              "expected": ">= 100",
+              "actual": "1123"
+            },
+            {
+              "filter_name": "category_match",
+              "passed": true,
+              "detail": "Product is in Water Bottles category",
+              "expected": "Water Bottles category",
+              "actual": "Home & Kitchen > Water Bottles"
+            }
+          ],
+          "qualified": true,
+          "metadata": {
+            "score": 0.403,
+            "score_breakdown": {
+              "review_score": 0.112,
+              "rating_score": 0.467,
+              "price_proximity": 0.778
+            }
+          }
+        }
+      ],
+      "status": "completed",
+      "started_at": "2025-12-29T01:13:28.368289",
+      "completed_at": "2025-12-29T01:13:28.371474",
+      "error": null,
+      "metadata": {}
+    }
+  ]
+}

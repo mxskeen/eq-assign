@@ -49,5 +49,3 @@ dashboard/dist/
 .DS_Store
 Thumbs.db
 
-# Traces (optional - remove if you want to commit traces)
-traces/
