@@ -2,6 +2,8 @@
 
 A debugging library for multi-step algorithmic systems. Captures decision context at each pipeline step.
 
+![High Level Design](hld.png)
+
 ## Quick Start
 
 ```bash
